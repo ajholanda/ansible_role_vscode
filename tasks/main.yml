@@ -3,9 +3,15 @@
   include_tasks: "{{ ansible_pkg_mgr }}.yml"
   when: |
     ansible_pkg_mgr is defined
-    and (ansible_pkg_mgr == "apt"
-    or ansible_pkg_mgr == "dnf"
+    and (ansible_pkg_mgr == "dnf"
     or ansible_pkg_mgr == "zypper")
+  tags: vscode
+
+- name: Include Snap tasks
+  include_tasks: snap.yml
+  when: |
+    ansible_pkg_mgr is defined
+    and ansible_pkg_mgr == "apt"
   tags: vscode
 
 - name: Install VS Code on Windows

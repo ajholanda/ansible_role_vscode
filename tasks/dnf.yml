@@ -1,7 +1,7 @@
 ---
 - name: Make VS Code repo {{ vscode_state }}
   yum_repository:
-    name: Visual Studio Code
+    name: vscode
     description:  Visual Studio Code repository
     baseurl: "{{ vscode_yum_repository_url }}"
     gpgcheck: true

@@ -1,0 +1,14 @@
+---
+- name: Install Snap
+  apt:
+    pkg: 
+      - snap
+      - snapd
+  tags: vscode
+
+- name: Make VS Code {{ vscode_state }} using Snap
+  snap:
+    name: code
+    classic: yes
+    state: "{{ vscode_state }}"
+  tags: vscode

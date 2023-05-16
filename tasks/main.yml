@@ -1,0 +1,14 @@
+---
+- name: Include {{ ansible_pkg_mgr | default('Linux') }} tasks
+  include_tasks: "{{ ansible_pkg_mgr }}.yml"
+  when: |
+    ansible_pkg_mgr is defined
+    and (ansible_pkg_mgr == "apt"
+    or ansible_pkg_mgr == "dnf"
+    or ansible_pkg_mgr == "zypper")
+  tags: vscode
+
+- name: Install VS Code on Windows
+  win_chocolatey: name=vscode
+  when: ansible_system|lower == "win32nt"
+  tags: vscode

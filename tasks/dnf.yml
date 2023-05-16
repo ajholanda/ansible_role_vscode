@@ -1,0 +1,17 @@
+---
+- name: Make VS Code repo {{ vscode_state }}
+  yum_repository:
+    name: Visual Studio Code
+    description:  Visual Studio Code repository
+    baseurl: "{{ vscode_yum_repository_url }}"
+    gpgcheck: true
+    gpgkey:  "{{ vscode_linux_signing_key_url }}"
+    state: "{{ vscode_state }}"
+  tags: vscode
+
+- name: Make VS Code {{ vscode_state }}
+  dnf:
+    name: code
+    state: "{{ vscode_state }}"
+    update_cache: yes
+  tags: vscode

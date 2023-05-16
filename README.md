@@ -1,6 +1,7 @@
 # Ansible role vscode
 
 Yet another Ansible role to manage VS Code installation.
+On Debian-like distributions, VS Code is installed using Snap.
 
 ## Requirements
 

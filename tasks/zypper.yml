@@ -13,6 +13,7 @@
     auto_import_keys: true
     state: "{{ vscode_state }}"
     runrefresh: true
+  when: vscode_state in ["absent", "present"]
   tags: vscode
 
 - name: Make Google Chrome {{ vscode_state }}

@@ -1,11 +1,11 @@
 ---
-- name: Make repository key {{ vscode_state }}
+- name: Add repository key
   rpm_key:
     key: "{{ vscode_linux_signing_key_url }}"
   when: vscode_state != "absent"
   tags: vscode
 
-- name: Make repository {{ vscode_state }} in the list
+- name: Manage repository in the list
   zypper_repository:
     name: vscode
     description: vscode repository

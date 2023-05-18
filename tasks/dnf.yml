@@ -1,5 +1,5 @@
 ---
-- name: Make VS Code repo {{ vscode_state }}
+- name: Manage repository in the list
   yum_repository:
     name: vscode
     description:  Visual Studio Code repository

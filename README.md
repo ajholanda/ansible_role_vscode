@@ -9,6 +9,7 @@ None.
 
 ## Role Variables
 
+- `package_state`: set default value and may be used as global variable used across ajholanda roles. 
 - `vscode_linux_signing_key_url`: GPG key for Linux systems.
 - `vscode_yum_repository_url`: yum repository.
 - `vscode_apt_repository_url`: apt repository to add in the sources list.

@@ -1,5 +1,12 @@
 # Changes by release
 
+## 0.2.0 Unreleased
+
+### Added
+
+- Add `win_chocolatey` tag into win_chocolatey task to allow selection of this 
+module among ajholanda Galaxy roles.
+
 ## [0.1.0] 2023-05-18
 
 ### Added

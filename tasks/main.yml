@@ -15,6 +15,8 @@
   tags: vscode
 
 - name: Install VS Code on Windows
-  win_chocolatey: name=vscode
+  win_chocolatey:
+    name: vscode
+    state: "{{ vscode_state }}"
   when: ansible_system|lower == "win32nt"
   tags: vscode, win_chocolatey

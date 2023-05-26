@@ -4,4 +4,4 @@ vscode_linux_signing_key_url: https://packages.microsoft.com/keys/microsoft.asc
 vscode_yum_repository_url: https://packages.microsoft.com/yumrepos/vscode
 vscode_apt_keyring: /etc/apt/trusted.gpg.d/packages.microsoft.gpg
 vscode_apt_repository_url: "deb [arch=amd64,arm64,armhf signed-by={{ vscode_apt_keyring }}] https://packages.microsoft.com/repos/code stable main"
-vscode_state: present
+vscode_state: "{{ package_state }}"

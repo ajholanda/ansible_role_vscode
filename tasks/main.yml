@@ -14,7 +14,7 @@
     and ansible_pkg_mgr == "apt"
   tags: vscode
 
-- name: Install VS Code on Windows
+- name: Make VS Code on Windows {{ vscode_state }}
   win_chocolatey:
     name: vscode
     state: "{{ vscode_state }}"

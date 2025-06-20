@@ -1,14 +1,14 @@
 ---
 - name: Install Snap
-  apt:
-    pkg: 
+  ansible.builtin.apt:
+    pkg:
       - snap
       - snapd
   tags: vscode
 
-- name: Make VS Code {{ vscode_state }} using Snap
-  snap:
+- name: Use Snap to make VS Code {{ vscode_state }}
+  community.general.snap:
     name: code
-    classic: yes
+    classic: true
     state: "{{ vscode_state }}"
   tags: vscode

@@ -1,18 +1,18 @@
 ---
 - name: Manage repository in the list
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: vscode
-    description:  Visual Studio Code repository
+    description: Visual Studio Code repository
     baseurl: "{{ vscode_yum_repository_url }}"
     gpgcheck: true
-    gpgkey:  "{{ vscode_linux_signing_key_url }}"
+    gpgkey: "{{ vscode_linux_signing_key_url }}"
     state: "{{ vscode_state }}"
   when: vscode_state in ["absent", "present"]
   tags: vscode
 
 - name: Make VS Code {{ vscode_state }}
-  dnf:
+  ansible.builtin.dnf:
     name: code
     state: "{{ vscode_state }}"
-    update_cache: yes
+    update_cache: true
   tags: vscode

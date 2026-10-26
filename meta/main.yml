@@ -24,7 +24,7 @@ galaxy_info:
         - all
     - name: opensuse
       versions:
-        - "15.3"
+        - all
     - name: Ubuntu
       versions:
         - focal

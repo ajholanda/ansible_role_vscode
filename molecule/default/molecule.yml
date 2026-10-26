@@ -19,6 +19,10 @@ platforms:
     image: docker.io/library/almalinux:9
     pre_build_image: true
     command: sleep infinity
+  - name: suse
+    image: docker.io/opensuse/leap:16.0
+    pre_build_image: true
+    command: sleep infinity
 provisioner:
   name: ansible
 verifier:

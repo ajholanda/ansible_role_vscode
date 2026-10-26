@@ -16,9 +16,9 @@
   when: vscode_state in ["absent", "present"]
   tags: vscode
 
-- name: Make Google Chrome {{ vscode_state }}
+- name: Make VS Code {{ vscode_state }}
   community.general.zypper:
-    name: "google-chrome-stable"
+    name: code
     state: "{{ vscode_state }}"
     update_cache: true
   tags: vscode

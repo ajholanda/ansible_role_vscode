@@ -1,22 +1,14 @@
 ---
-- name: Include tasks for {{ ansible_pkg_mgr | default('Linux') }}
-  ansible.builtin.include_tasks: "{{ ansible_pkg_mgr }}.yml"
-  when: |
-    ansible_pkg_mgr is defined
-    and (ansible_pkg_mgr == "dnf"
-    or ansible_pkg_mgr == "zypper")
-  tags: vscode
-
-- name: Include Snap tasks
-  ansible.builtin.include_tasks: snap.yml
-  when: |
-    ansible_pkg_mgr is defined
-    and ansible_pkg_mgr == "apt"
+- name: Include tasks for {{ ansible_facts['pkg_mgr'] | default('Linux') }}
+  ansible.builtin.include_tasks: "{{ ansible_facts['pkg_mgr'] }}.yml"
+  when:
+    - ansible_facts['pkg_mgr'] is defined
+    - ansible_facts['pkg_mgr'] in ["apt", "dnf", "zypper"]
   tags: vscode
 
 - name: Install VS Code on Windows
   chocolatey.chocolatey.win_chocolatey:
     name: vscode
     state: "{{ vscode_state }}"
-  when: ansible_system|lower == "win32nt"
+  when: ansible_facts['system'] | lower == "win32nt"
   tags: vscode, win_chocolatey

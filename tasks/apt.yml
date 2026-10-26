@@ -1,0 +1,49 @@
+---
+- name: Install repository dependencies
+  ansible.builtin.apt:
+    pkg:
+      - ca-certificates
+      - python3-debian
+    update_cache: true
+  when: vscode_state != "absent"
+  tags: vscode
+
+- name: Make VS Code absent
+  ansible.builtin.apt:
+    name: code
+    state: absent
+  when: vscode_state == "absent"
+  tags: vscode
+
+- name: Remove legacy one-line repository and keyring
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/sources.list.d/vscode.list
+    - /etc/apt/trusted.gpg.d/packages.microsoft.gpg
+    - /etc/apt/trusted.gpg.d/packages.microsoft.asc
+  tags: vscode
+
+- name: Manage repository
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: deb
+    uris: "{{ vscode_apt_repository_uri }}"
+    suites: stable
+    components: main
+    architectures:
+      - amd64
+      - arm64
+      - armhf
+    signed_by: "{{ vscode_linux_signing_key_url }}"
+    state: "{{ 'absent' if vscode_state == 'absent' else 'present' }}"
+  tags: vscode
+
+- name: Make VS Code {{ vscode_state }}
+  ansible.builtin.apt:
+    name: code
+    state: "{{ vscode_state }}"
+    update_cache: true
+  when: vscode_state != "absent"
+  tags: vscode

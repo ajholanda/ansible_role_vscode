@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Gather package facts
+      ansible.builtin.package_facts:
+
+    - name: Check VS Code package is installed
+      ansible.builtin.assert:
+        that: "'code' in ansible_facts.packages"
+
+    - name: Run VS Code
+      ansible.builtin.command: code --version --no-sandbox --user-data-dir /tmp/vscode
+      register: vscode_version
+      changed_when: false
+
+    - name: Check VS Code version is reported
+      ansible.builtin.assert:
+        that: vscode_version.stdout_lines | length > 0
